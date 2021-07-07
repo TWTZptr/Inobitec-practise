@@ -25,11 +25,21 @@ class NodeController {
         }
     }
 
-    async getNodeById(req, res) {
+    async getNodeByParentId(req, res) {
         try {
-            const nodeId = req.params.parentId;
-            const node = await network.findByPk(nodeId);
-            res.send(node);
+            const parentId = req.params.parentId;
+            const nodes = await network.findAll({where: {parentId}, raw: true});
+            res.send(nodes);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    async delete(req, res) {
+        try {
+            const id = req.params.id;
+            await network.destroy({where: {id}});
+            res.sendStatus(200);
         } catch (err) {
             console.log(err);
         }
