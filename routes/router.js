@@ -5,7 +5,8 @@ const router = new Express.Router();
 
 router.get('/', nodeController.getUpperNodes);
 router.post('/', nodeController.create);
-router.get('/:parentId', nodeController.getNodeByParentId);
+router.get('/:parentId', nodeController.getNodesByParentId);
 router.delete('/:id', nodeController.delete);
+router.put('/', nodeController.update);
 
 module.exports = router;

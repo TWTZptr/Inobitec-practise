@@ -25,7 +25,7 @@ class NodeController {
         }
     }
 
-    async getNodeByParentId(req, res) {
+    async getNodesByParentId(req, res) {
         try {
             const parentId = req.params.parentId;
             const nodes = await network.findAll({where: {parentId}, raw: true});
@@ -39,6 +39,16 @@ class NodeController {
         try {
             const id = req.params.id;
             await network.destroy({where: {id}});
+            res.sendStatus(200);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    async update(req, res) {
+        try {
+            const {id, name, ip, port, parentId} = req.query;
+            const result = await network.update({name, ip, port, parentId}, {where: {id}});
             res.sendStatus(200);
         } catch (err) {
             console.log(err);
