@@ -1,16 +1,16 @@
-const network = require('../models/models');
+const network = require('../models/model');
 
 class NodeController {
     async create(req, res) {
         try {
-            const {name, ip, port, parentId} = req.query;
+            const {name, ip, port, parent_id} = req.body;
             const node = await network.create({
                 name,
                 ip,
                 port,
-                parentId
+                parent_id
             });
-            await res.send(node);
+            await res.json(node);
         } catch (err) {
             console.log(err);
         }
@@ -18,7 +18,7 @@ class NodeController {
 
     async getUpperNodes(req, res) {
         try {
-            const nodes = await network.findAll({where: {parentId: -1}, raw: true});
+            const nodes = await network.findAll({where: {parent_id: null}, raw: true});
             res.send(nodes);
         } catch (err) {
             console.log(err);
@@ -27,8 +27,8 @@ class NodeController {
 
     async getNodesByParentId(req, res) {
         try {
-            const parentId = req.params.parentId;
-            const nodes = await network.findAll({where: {parentId}, raw: true});
+            const {parent_id} = req.params;
+            const nodes = await network.findAll({where: {parent_id}, raw: true});
             res.send(nodes);
         } catch (err) {
             console.log(err);
@@ -47,9 +47,10 @@ class NodeController {
 
     async update(req, res) {
         try {
-            const {id, name, ip, port, parentId} = req.query;
-            const result = await network.update({name, ip, port, parentId}, {where: {id}});
-            res.sendStatus(200);
+            const {id, name, ip, port, parent_id} = req.body;
+            const node = {name, ip, port, parent_id};
+            await network.update(node, {where: {id}});
+            res.json(node);
         } catch (err) {
             console.log(err);
         }

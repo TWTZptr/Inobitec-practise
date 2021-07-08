@@ -8,7 +8,7 @@ module.exports = sequelize.define('network', {
         primaryKey: true,
         allowNull: false
     },
-    parentId: {
+    parent_id: {
         type: Sequelize.INTEGER,
         allowNull: true
     },
