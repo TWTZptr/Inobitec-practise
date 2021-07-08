@@ -16,10 +16,10 @@ class NodeController {
         }
     }
 
-    async getUpperNodes(req, res) {
+    async getUpperNode(req, res) {
         try {
-            const nodes = await network.findAll({where: {parent_id: null}, raw: true});
-            res.send(nodes);
+            const nodes = await network.findOne({where: {parent_id: null}, raw: true});
+            res.json(nodes);
         } catch (err) {
             console.log(err);
         }
