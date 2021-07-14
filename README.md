@@ -8,7 +8,7 @@ Create Table networks(
 	IP VARCHAR(45),
 	port INTEGER,
 	parent_id INTEGER,
-	Foreign key (parent_id) references node(id) on delete cascade
+	Foreign key (parent_id) references networks(id) on delete cascade
 );
 ```
 
