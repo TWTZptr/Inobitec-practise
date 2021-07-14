@@ -12,6 +12,7 @@ class NodeController {
             });
             await res.json(node);
         } catch (err) {
+            res.sendStatus(400);
             console.log(err);
         }
     }
@@ -21,6 +22,7 @@ class NodeController {
             const nodes = await network.findOne({where: {parent_id: null}, raw: true});
             res.json(nodes);
         } catch (err) {
+            res.sendStatus(400);
             console.log(err);
         }
     }
@@ -31,6 +33,7 @@ class NodeController {
             const nodes = await network.findAll({where: {parent_id}, raw: true});
             res.send(nodes);
         } catch (err) {
+            res.sendStatus(400);
             console.log(err);
         }
     }
@@ -41,6 +44,7 @@ class NodeController {
             await network.destroy({where: {id}});
             res.sendStatus(200);
         } catch (err) {
+            res.sendStatus(400);
             console.log(err);
         }
     }
@@ -52,6 +56,7 @@ class NodeController {
             await network.update(node, {where: {id}});
             res.json(node);
         } catch (err) {
+            res.sendStatus(400);
             console.log(err);
         }
     }

@@ -9,4 +9,3 @@ module.exports = new Sequelize('network', 'postgres', 'admin', {
         timestamps: false
     }
 });
-

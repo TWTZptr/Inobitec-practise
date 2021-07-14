@@ -10,7 +10,11 @@ module.exports = sequelize.define('network', {
     },
     parent_id: {
         type: Sequelize.INTEGER,
-        allowNull: true
+        allowNull: true,
+        references: {
+            model: 'node',
+            key: 'id'
+        }
     },
     name: {
         type: Sequelize.STRING,

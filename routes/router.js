@@ -3,10 +3,10 @@ const nodeController = require('../controllers/nodeController');
 
 const router = new Express.Router();
 
-router.get('/', nodeController.getUpperNode);
-router.get('/:parent_id', nodeController.getNodesByParentId);
-router.delete('/:id', nodeController.delete);
-router.put('/', nodeController.update);
-router.post('/', nodeController.create);
+router.get('/nodes', nodeController.getUpperNode);
+router.get('/nodes/:parent_id/children', nodeController.getNodesByParentId);
+router.delete('/nodes/:id', nodeController.delete);
+router.put('/nodes/:id', nodeController.update);
+router.post('/nodes', nodeController.create);
 
 module.exports = router;
