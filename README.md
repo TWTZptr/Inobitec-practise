@@ -2,13 +2,13 @@
 
 **Create table**
 ```
-Create Table network(
+Create Table networks(
 	id SERIAL PRIMARY KEY,
 	name VARCHAR(256),
 	ip VARCHAR(45),
 	port INTEGER,
 	parent_id INTEGER,
-	Foreign key (parent_id) references network(id) on delete cascade
+	Foreign key (parent_id) references networks(id) on delete cascade
 );
 ```
 
