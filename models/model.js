@@ -12,7 +12,7 @@ module.exports = sequelize.define('network', {
         type: Sequelize.INTEGER,
         allowNull: true,
         references: {
-            model: 'node',
+            model: 'network',
             key: 'id'
         }
     },
