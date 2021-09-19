@@ -1,4 +1,4 @@
-# Inobitec-practise-server
+# Networks-server
 
 **Create table**
 ```
